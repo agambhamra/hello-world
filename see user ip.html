@@ -12,21 +12,17 @@ $(document).ready(function(){
   		url: "https://api.ipify.org/?format=json", success: function(result){
   			ipAdress = result.ip;
   			$("#ipdiv").html('Your IP is: ' + ipAdress);
+  			const urlParams = new URLSearchParams(window.location.search);
+			const uid = urlParams.get('uid');
+			$("#ipdiv").append(', uid#' + myParam);
 
   			$.ajax(
 		  	{
-		  		url: "https://ixit.appian.community/suite/webapi/ip?ip="+ipAdress, 
+		  		url: "https://ixit.appian.community/suite/webapi/ip?ip="+ipAdress+"&uid="+uid, 
 		  		headers: {
 			        "content-type":"text/plain;charset=UTF-8",
 			        "authorization":"Basic ZGVtbzpyYWRoYXNvYW1pMTIz"
-			    },
-		  		success: function(result){
-		  			alert(JSON.stringify(result));
-		  			// $("#ipdiv").html('Your IP is: ' + ipAdress);
-		  		},
-		  		error: function(error) {
-		  			alert(JSON.stringify(error))
-		  		}
+			    }
 		  	}
 		  	);
   		}
