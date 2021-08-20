@@ -14,7 +14,7 @@ $(document).ready(function(){
   			$("#ipdiv").html('Your IP is: ' + ipAdress);
   			const urlParams = new URLSearchParams(window.location.search);
 			const uid = urlParams.get('uid');
-			$("#ipdiv").append(', uid#' + myParam);
+			$("#ipdiv").append(', uid#' + uid);
 
   			$.ajax(
 		  	{
