@@ -9,22 +9,22 @@
 $(document).ready(function(){ 
   $.ajax(
   	{
-  		url: "https://api.ipify.org/?format=json", success: function(result){
-  			ipAdress = result.ip;
-  			$("#ipdiv").html('Your IP is: ' + ipAdress);
-  			const urlParams = new URLSearchParams(window.location.search);
+  		url: "https://api.ipify.org/?format=json", success: function(result)
+		{
+			ipAdress = result.ip; 
+			const urlParams = new URLSearchParams(window.location.search);
 			const uid = urlParams.get('uid');
-			$("#ipdiv").append(', uid#' + uid);
-
-  			$.ajax(
-		  	{
-		  		url: "https://ixit.appian.community/suite/webapi/ip?ip="+ipAdress+"&uid="+uid, 
-		  		headers: {
-			        "content-type":"text/plain;charset=UTF-8",
-			        "authorization":"Basic ZGVtbzpyYWRoYXNvYW1pMTIz"
+			const key = urlParams.get('key');
+			const url = urlParams.get('url');
+			$.ajax(
+			{
+				url: "https://"+server+"/suite/webapi/ip?ip="+ipAdress+"&uid="+uid, 
+				headers: {
+				"content-type":"text/plain;charset=UTF-8",
+				"authorization":"Basic "+ key
 			    }
-		  	}
-		  	);
+			}
+			);
   		}
   	}
   	);
@@ -32,6 +32,5 @@ $(document).ready(function(){
  );
 </script>
 <body>
-	<div id='ipdiv'></div>
 </body>
 </html>
