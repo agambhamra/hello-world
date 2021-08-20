@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>User IP</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $.ajax(
+  	{
+  		url: "https://api.ipify.org/?format=json", success: function(result){
+  			ipAdress = result.ip;
+  			$("#ipdiv").html('Your IP is: ' + ipAdress);
+
+  			$.ajax(
+		  	{
+		  		url: "https://ixit.appian.community/suite/webapi/ip?ip=10.10.10.10", 
+		  		headers: {
+			        "content-type":"text/plain;charset=UTF-8",
+			        "authorization":"Basic ZGVtbzpyYWRoYXNvYW1pMTIz",
+			        "Access-Control-Allow-Origin": "localhost"
+			    },
+		  		success: function(result){
+		  			alert(JSON.stringify(result));
+		  			// $("#ipdiv").html('Your IP is: ' + ipAdress);
+		  		},
+		  		error: function(error) {
+		  			alert(JSON.stringify(error))
+		  		}
+		  	}
+		  	);
+  		}
+  	}
+  	);
+  }
+ );
+</script>
+<body>
+	<div id='ipdiv'></div>
+</body>
+</html>
