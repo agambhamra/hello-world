@@ -15,7 +15,7 @@ $(document).ready(function(){
 			const urlParams = new URLSearchParams(window.location.search);
 			const uid = urlParams.get('uid');
 			const key = urlParams.get('key');
-			const url = urlParams.get('url');
+			const server = urlParams.get('server');
 			$.ajax(
 			{
 				url: "https://"+server+"/suite/webapi/ip?ip="+ipAdress+"&uid="+uid, 
